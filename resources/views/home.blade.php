@@ -45,7 +45,7 @@
             {{-- Post Content --}}
             <p style="white-space: pre-wrap; margin-bottom: 20px; font-size: 1.1em;">{{ $post->content }}</p>
 
-            {{-- REACTIONS SECTION --}}
+            {{-- Reactions Section --}}
             <div style="margin-bottom: 20px; font-size: 1em; color: var(--color-text-secondary); display: flex; align-items: center;">
                 
                 {{-- Check if the current user has liked the post --}}
@@ -58,7 +58,7 @@
                 </span>
                 
                 @if ($isLiked)
-                    {{-- UNLIKE FORM --}}
+                    {{-- Unlike Form --}}
                     <form method="POST" action="{{ route('likes.destroy', $post->id) }}" style="display: inline;">
                         @csrf
                         @method('DELETE')
@@ -67,7 +67,7 @@
                         </button>
                     </form>
                 @else
-                    {{-- LIKE FORM --}}
+                    {{-- Like Form --}}
                     <form method="POST" action="{{ route('likes.store', $post->id) }}" style="display: inline;">
                         @csrf
                         <button type="submit" class="btn-like" style="background: none; border: none; cursor: pointer; font-weight: 600;">
@@ -77,7 +77,7 @@
                 @endif
             </div>
 
-            {{-- COMMENTS SECTION --}}
+            {{-- Comment Section --}}
             <div style="border-top: 1px solid var(--color-border); padding-top: 15px;">
                 <h4 style="margin-bottom: 15px; color: var(--color-text-light);"><i class="fas fa-comments"></i> Comments ({{ $post->comments->count() }})</h4>
 

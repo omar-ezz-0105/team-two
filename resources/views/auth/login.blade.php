@@ -3,7 +3,6 @@
 <div style="max-width: 400px; margin: 50px auto; padding: 30px; border: 1px solid var(--color-border); border-radius: 12px; background-color: var(--color-bg-card); box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
     <h2 style="text-align: center; color: var(--color-text-light); margin-bottom: 25px;">Login to <span class="gradient-text">TeamTwo</span></h2>
 
-    {{-- Session Messages (Success/Error from redirects) --}}
     @if(session('success'))
         <div class="success-alert">{{ session('success') }}</div>
     @endif

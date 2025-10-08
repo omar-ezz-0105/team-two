@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeamTwo - Social Platform</title>
-    {{-- Font Awesome CDN for Icons --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJdZ6Mv0uU8Y+478gA3K9wE+kU1n3z9o1sB70M0zPz/V5/W6P2rG5N8W/gQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* Base Colors & Palette */
         :root {
             --color-dark: #121212;
             --color-black: #000000;
@@ -22,7 +20,7 @@
             --color-border: #333333;
         }
 
-        /* Gradient Mix */
+        
         .gradient-text {
             background: linear-gradient(90deg, var(--color-blue), var(--color-purple));
             -webkit-background-clip: text;
@@ -30,16 +28,16 @@
             background-clip: text;
         }
 
-        /* Global Styles */
+        
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
-            background-color: var(--color-dark); /* Dark background */
+            background-color: var(--color-dark); 
             color: var(--color-text-light);
             line-height: 1.6;
         }
 
-        /* Header Styles */
+        
         .header { 
             background-color: var(--color-black); 
             padding: 12px 20px; 
@@ -72,7 +70,7 @@
             align-items: center;
         }
 
-        /* Main Content Wrapper */
+        
         .main-content { 
             padding: 20px; 
             max-width: 1000px; 
@@ -81,7 +79,7 @@
             border-radius: 12px; 
         }
 
-        /* Utility Styles (Buttons, Forms, Alerts) */
+        
         .logout-form button, .nav-button { 
             background: none; 
             border: none; 
@@ -110,7 +108,7 @@
             transform: translateY(-1px);
         }
 
-        /* Specific Button Styles */
+        
         .btn-post {
             background-image: linear-gradient(45deg, var(--color-blue), var(--color-purple));
             color: var(--color-text-light) !important;
@@ -130,7 +128,7 @@
             color: white;
         }
 
-        /* Form elements */
+       
         input[type="text"], input[type="email"], input[type="password"], textarea {
             background-color: #2a2a2a;
             border: 1px solid var(--color-border) !important;
@@ -160,7 +158,7 @@
             margin-bottom: 20px;
         }
 
-        /* Mobile Responsiveness */
+        
         @media (max-width: 600px) {
             .header {
                 flex-direction: column;
@@ -189,7 +187,7 @@
         </a>
         <nav>
             @if(session('user'))
-                {{-- Show links for logged-in users --}}
+                
                 <a href="{{ route('home') }}" title="Home Feed"><i class="fas fa-home"></i> Home</a>
                 <a href="{{ route('posts.create') }}" title="Create Post"><i class="fas fa-plus-square"></i> Post</a>
                 <form class="logout-form" method="POST" action="{{ route('logout') }}" style="display: inline;">
@@ -199,7 +197,7 @@
                     </button>
                 </form>
             @else
-                {{-- Show links for logged-out users --}}
+                
                 <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
                 <a href="{{ route('register') }}"><i class="fas fa-user-plus"></i> Register</a> 
             @endif

@@ -6,7 +6,6 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
         
-        {{-- Name Field --}}
         <div style="margin-bottom: 20px;">
             <label for="name" style="display: block; margin-bottom: 8px; font-weight: 600;"><i class="fas fa-user"></i> Name:</label>
             <input type="text" id="name" name="name" value="{{ old('name') }}" required autofocus
@@ -16,7 +15,6 @@
             @enderror
         </div>
 
-        {{-- Email Field --}}
         <div style="margin-bottom: 20px;">
             <label for="email" style="display: block; margin-bottom: 8px; font-weight: 600;"><i class="fas fa-at"></i> Email:</label>
             <input type="email" id="email" name="email" value="{{ old('email') }}" required 
@@ -26,7 +24,6 @@
             @enderror
         </div>
 
-        {{-- Password Field --}}
         <div style="margin-bottom: 20px;">
             <label for="password" style="display: block; margin-bottom: 8px; font-weight: 600;"><i class="fas fa-lock"></i> Password:</label>
             <input type="password" id="password" name="password" required
@@ -36,7 +33,6 @@
             @enderror
         </div>
 
-        {{-- Confirm Password Field --}}
         <div style="margin-bottom: 30px;">
             <label for="password_confirmation" style="display: block; margin-bottom: 8px; font-weight: 600;"><i class="fas fa-lock-open"></i> Confirm Password:</label>
             <input type="password" id="password_confirmation" name="password_confirmation" required
