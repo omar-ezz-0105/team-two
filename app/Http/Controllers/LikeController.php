@@ -13,8 +13,6 @@ class LikeController extends Controller
     {
         $userId = session('user')->id;
         
-        // Attach the user's ID to the post's likers list (pivot table: likes)
-        // syncWithoutDetaching ensures the user is added only if they haven't liked it yet.
         $post->likers()->syncWithoutDetaching([$userId]);
 
         return back()->with('success', 'Post liked!');
@@ -27,7 +25,6 @@ class LikeController extends Controller
     {
         $userId = session('user')->id;
         
-        // Detach the user's ID from the post's likers list
         $post->likers()->detach($userId);
 
         return back()->with('success', 'Post unliked!');

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post; // Import the Post Model
-use Illuminate\Support\Facades\Storage; // Import Storage facade for file handling
+use App\Models\Post; 
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -13,7 +13,6 @@ class PostController extends Controller
      */
     public function create()
     {
-        // Protected by 'auth.manual' middleware in web.php
         return view('posts.create');
     }
 
@@ -22,31 +21,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // 1. Validation
+        
         $request->validate([
             'content' => 'required|string|max:5000',
-            // Image is optional but must be a valid file if present
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2MB
+            
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
 
-        // Ensure user is logged in (middleware protects the route, but this is a safeguard)
+        
         if (!session('user')) {
             return redirect()->route('login')->with('error', 'You must be logged in to post.');
         }
 
         $imagePath = null;
         
-        // 2. Handle Image Upload
+        
         if ($request->hasFile('image')) {
-            // Store the file in 'public/images/posts' and get the path
+            // Store the file in 'public/images/posts'
             $imagePath = $request->file('image')->store('images/posts', 'public');
         }
 
-        // 3. Create the Post in the Database
+        
         Post::create([
             'user_id' => session('user')->id,
             'content' => $request->content,
-            'image_path' => $imagePath, // Save the path to the DB
+            'image_path' => $imagePath,
         ]);
 
         return redirect()->route('home')->with('success', 'Post created successfully!');
@@ -57,17 +56,15 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        // 1. Authorization Check: Ensure the logged-in user owns the post
+        
         if ($post->user_id !== session('user')->id) {
             return back()->with('error', 'You are not authorized to delete this post.');
-        }
+        }  
 
-        // 2. Delete the associated image file from storage
         if ($post->image_path) {
             Storage::disk('public')->delete($post->image_path);
         }
 
-        // 3. Delete the post from the database
         $post->delete();
 
         return redirect()->route('home')->with('success', 'Post deleted successfully.');

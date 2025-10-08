@@ -17,7 +17,7 @@ class CommentController extends Controller
             'content' => 'required|string|max:500',
         ]);
 
-        // Create the comment
+        
         Comment::create([
             'user_id' => session('user')->id,
             'post_id' => $post->id,
@@ -32,7 +32,6 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        // Authorization: Check if the logged-in user owns the comment
         if ($comment->user_id !== session('user')->id) {
             return back()->with('error', 'You are not authorized to delete this comment.');
         }
